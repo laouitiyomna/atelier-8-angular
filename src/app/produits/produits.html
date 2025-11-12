@@ -1,21 +1,37 @@
 <div class="container">
     <div class="card shadow mb-4">
         <div class="card-body">
-        <table >
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                    <th>Liste de Produits</th>
+                        <th>N</th>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Date Création</th>
+                        <th>Actions</th>
                     </tr>
-                    </thead>
-                    @for (produit of produits; track produit)
-                    {
-                        <tbody>
-                            <tr >
-                            <td>{{produit}}</td>
-                            </tr>
-                    </tbody>
-                    }
-        </table>
+                </thead>
+
+                <tbody *ngIf="produits && produits.length; else empty">
+                    <tr *ngFor="let produit of produits; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ produit.idProduit }}</td>
+                        <td>{{ produit.nomProduit }}</td>
+                        <td>{{ produit.prixProduit }}</td>
+                        <td>{{ produit.dateCreation | date : 'dd/MM/yyyy' }}</td>
+                        <td>
+                            <button class="btn btn-danger" (click)="supprimerProduit(produit)">Supprimer</button></td>
+                            <td><button class="btn btn-success" [routerLink]="['/updateProduit', produit.idProduit]">Modifier</button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <ng-template #empty>
+                <h5>Aucun produit trouvé !</h5>
+            </ng-template>
         </div>
     </div>
 </div>
