@@ -55,7 +55,7 @@ return this.http.post<Produit>(this.apiURL, prod, httpOptions);
 const url = `${this.apiURL}/${id}`;
 return this.http.get<Produit>(url);}
 
-  updateProduit(prod :Produit) : Observable<Produit>
+ updateProduit(prod :Produit) : Observable<Produit>
 {
 return this.http.put<Produit>(this.apiURL, prod, httpOptions);
 }
